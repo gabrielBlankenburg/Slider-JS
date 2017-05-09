@@ -56,7 +56,24 @@ function teste(){
     //adiciona os botões na página
     simpleSlider.appendChild(btnl);
     simpleSlider.appendChild(btnr);
-    
+
+    //cria o botão que começa e para o slider e o estiliza
+    var btnc = document.createElement('button');
+    btnc.className = 'play';
+    btnc.style.position = 'absolute';
+    btnc.style.bottom = '3%';
+    btnc.style.background = '#111'
+    btnc.style.border = '1px solid rgba(20,20,20,.5)';
+    btnc.style.opacity = '.5';
+    btnc.style.left = '45%';
+    btnc.style.width = '10%';
+    btnc.style.zIndex = '1';
+    btnc.style.color = 'white';
+    btnc.style.fontFamily = 'Impact, Charcoal, sans-serif';
+    btnc.innerHTML = 'PLAY';
+
+
+    simpleSlider.appendChild(btnc);
     
     //configura as imagens
     var setImage = function(img){
@@ -78,13 +95,16 @@ function teste(){
     document.body.appendChild(simpleSlider);
     
     //rola infinitamente as imagens
-    var start = function(i){
-        var interval = setInterval(function(){           
+    var play = function(i){
+        var interval = setInterval(function(){
+            var stop = function(){
+                clearInterval(interval);
+            };
             //quando a margem é do tamanho do width do slider reposiciona ela pro final
             if(parseFloat(img[i].style.marginLeft) == - (simpleSlider.offsetWidth)){
                 slider.appendChild(img[i]);
                 setImage(img[i]);
-                clearInterval(interval);
+                stop();
                 if(i == img.length - 1){
                     i = 0;
                 }
@@ -97,6 +117,13 @@ function teste(){
             img[i].style.marginLeft = (parseFloat(img[i].style.marginLeft) - 1) + 'px';
         }, 1);
     };
-    start(0);
+
+    btnc.addEventListener('click', function(){
+        if(btnc.innerHTML == 'PLAY'){
+            play(0);
+            btnc.innerHTML = 'STOP';
+        }
+    });
+    //play(0);
     
 }
