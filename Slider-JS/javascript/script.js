@@ -1,4 +1,4 @@
-function teste(){
+function marginSlider(){
     //Pega o ID do elemento e os elementos dentro dele
     var simpleSlider = document.getElementById('simple-slider');
     var img = Array.prototype.slice.call(simpleSlider.children);
@@ -14,66 +14,53 @@ function teste(){
     slider.style.overflow = 'hidden';
     simpleSlider.style.position = 'relative';
 
-    //cria os botões prev e next
-    var btnr = document.createElement('button');
-    var btnl = document.createElement('button');
-    btnr.className = 'next';
-    btnl.className = 'prev';
-    //posiciona e estiliza os botões
-    btnr.style.position = 'absolute';
-    btnl.style.position = 'absolute';
-    btnr.style.zIndex = '1';
-    btnl.style.zIndex = '1';
-    btnr.style.top = '47%';
-    btnl.style.top = '47%';
-    btnr.style.right = '2%';
-    btnl.style.left = '2%';
-    btnr.style.height = '7%';
-    btnr.style.width = '7%';
-    btnl.style.width = '7%';
-    btnl.style.height = '7%';
-    btnr.style.color = 'white';
-    btnl.style.color = 'white';
+    //configura todos os botões
+    var setDefaultButtons = function(next, prev, play){
+        next.className = 'next';
+        prev.className = 'prev';
+        play.className = 'play';
+        var btn = [next, prev, play];
+        var setNextPrev = function(next, prev){
+            var both = [next, prev];
+            both.forEach(function(x){
+                x.style.top = '47%';
+                x.style.height = '7%';
+                x.style.width = '7%';
+                x.style.background = '#333';
+                x.style.borderRadius = '80%';
+                x.style.fontSize = '1.5em';
+                x.style.paddingBottom = '6%';
+                x.style.paddingRight = '6%';
+            });
+            next.style.right = '2%';
+            next.innerHTML = '&rarr;';
 
-    btnr.style.background = '#333';
-    btnr.style.opacity = '0.5';
-    btnr.style.border = '1px solid rgba(20,20,20,.5)';
-    btnr.style.borderRadius = '80%';
-    btnr.innerHTML = '&rarr;';
-    btnr.style.fontSize = '1.5em';
-    btnr.style.paddingBottom = '6%';
-    btnr.style.paddingRight = '6%';
+            prev.style.left = '2%';
+            prev.innerHTML = '&larr;';
+            btn.forEach(function(x){
+                x.style.position = 'absolute';
+                x.style.zIndex = '1';
+                x.style.border = '1px solid rgba(20,20,20,.5)';
+                x.style.color = 'white';  
+                x.style.opacity = '0.5';
+                simpleSlider.appendChild(x); 
+            });
+        }
 
-    btnl.style.background = '#333';
-    btnl.style.opacity = '0.5';
-    btnl.style.border = '1px solid rgba(20,20,20,.5)';
-    btnl.style.borderRadius = '80%'
-    btnl.innerHTML = '&larr;';
-    btnl.style.fontSize = '1.5em';
-    btnl.style.paddingBottom = '6%';
-    btnl.style.paddingRight = '6%';
-    
-    //adiciona os botões na página
-    simpleSlider.appendChild(btnl);
-    simpleSlider.appendChild(btnr);
+        setNextPrev(next, prev);  
+        play.style.bottom = '3%';
+        play.style.background = '#111';
+        play.style.left = '45%';
+        play.style.width = '10%';
+        play.style.fontFamily = 'Impact, Charcoal, sans-serif';
+        play.innerHTML = 'PLAY'; 
+    };
+    //cria os botoes do slider
+    var play = document.createElement('button');
+    var next = document.createElement('button');
+    var prev = document.createElement('button');
 
-    //cria o botão que começa e para o slider e o estiliza
-    var btnc = document.createElement('button');
-    btnc.className = 'play';
-    btnc.style.position = 'absolute';
-    btnc.style.bottom = '3%';
-    btnc.style.background = '#111'
-    btnc.style.border = '1px solid rgba(20,20,20,.5)';
-    btnc.style.opacity = '.5';
-    btnc.style.left = '45%';
-    btnc.style.width = '10%';
-    btnc.style.zIndex = '1';
-    btnc.style.color = 'white';
-    btnc.style.fontFamily = 'Impact, Charcoal, sans-serif';
-    btnc.innerHTML = 'PLAY';
-
-
-    simpleSlider.appendChild(btnc);
+    setDefaultButtons(next, prev, play);
     
     //configura as imagens
     var setImage = function(img){
@@ -94,8 +81,8 @@ function teste(){
     simpleSlider.appendChild(slider);
     document.body.appendChild(simpleSlider);
     
-    //rola infinitamente as imagens
-    var play = function(i){
+    //rola infinitamente as imagens ao clicar em play
+    var start = function(i){
         var interval = setInterval(function(){
             var stop = function(){
                 clearInterval(interval);
@@ -111,19 +98,20 @@ function teste(){
                 else{
                     i++;
                 }
-                play(i);
+                start(i);
             }
             //puxa a próxima imagem usando margem
             img[i].style.marginLeft = (parseFloat(img[i].style.marginLeft) - 1) + 'px';
         }, 1);
     };
 
-    btnc.addEventListener('click', function(){
-        if(btnc.innerHTML == 'PLAY'){
-            play(0);
-            btnc.innerHTML = 'STOP';
+    play.addEventListener('click', function(){
+        if(play.innerHTML == 'PLAY'){
+            start(0);
+            play.innerHTML = 'STOP';
         }
     });
-    //play(0);
     
 }
+
+window.onload = marginSlider;
