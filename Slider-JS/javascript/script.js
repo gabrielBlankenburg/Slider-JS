@@ -13,6 +13,49 @@ function teste(){
     simpleSlider.style.overflow = 'hidden';
     slider.style.overflow = 'hidden';
     simpleSlider.style.position = 'relative';
+
+    //cria os botões prev e next
+    var btnr = document.createElement('button');
+    var btnl = document.createElement('button');
+    btnr.className = 'next';
+    btnl.className = 'prev';
+    //posiciona e estiliza os botões
+    btnr.style.position = 'absolute';
+    btnl.style.position = 'absolute';
+    btnr.style.zIndex = '1';
+    btnl.style.zIndex = '1';
+    btnr.style.top = '47%';
+    btnl.style.top = '47%';
+    btnr.style.right = '2%';
+    btnl.style.left = '2%';
+    btnr.style.height = '7%';
+    btnr.style.width = '7%';
+    btnl.style.width = '7%';
+    btnl.style.height = '7%';
+    btnr.style.color = 'white';
+    btnl.style.color = 'white';
+
+    btnr.style.background = '#333';
+    btnr.style.opacity = '0.5';
+    btnr.style.border = '1px solid rgba(20,20,20,.5)';
+    btnr.style.borderRadius = '80%';
+    btnr.innerHTML = '&rarr;';
+    btnr.style.fontSize = '1.5em';
+    btnr.style.paddingBottom = '6%';
+    btnr.style.paddingRight = '6%';
+
+    btnl.style.background = '#333';
+    btnl.style.opacity = '0.5';
+    btnl.style.border = '1px solid rgba(20,20,20,.5)';
+    btnl.style.borderRadius = '80%'
+    btnl.innerHTML = '&larr;';
+    btnl.style.fontSize = '1.5em';
+    btnl.style.paddingBottom = '6%';
+    btnl.style.paddingRight = '6%';
+    
+    //adiciona os botões na página
+    simpleSlider.appendChild(btnl);
+    simpleSlider.appendChild(btnr);
     
     
     //configura as imagens
