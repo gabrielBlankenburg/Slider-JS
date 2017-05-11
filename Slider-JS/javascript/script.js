@@ -103,4 +103,110 @@ function marginSlider(){
     });
 }
 
-window.onload = marginSlider;
+/* Aqui o slider vai fazer um simples fadeIn infinitamente, possuindo os botões de next e prev pra voltar ou avançar a imagem*/
+function fadeIn(){
+    var slider = Array.prototype.slice.call(document.getElementsByClassName('fadeIn'));
+    slider.forEach(function(slider){
+        // Adiciona e estiliza os botões
+        var next = document.createElement('button');
+        var prev = document.createElement('button');
+        var setBtn = function(next, prev){
+            var both = [next,prev];
+            next.innerHTML = '>';
+            prev.innerHTML = '<';
+            next.style.right = '3%';
+            prev.style.left = '3%';
+            both.forEach(function(btn){
+                btn.style.position = 'absolute';
+                btn.style.background = '#333';
+                btn.style.opacity = '.5';
+                btn.style.color = 'white';
+                btn.style.width = '5%';
+                btn.style.height = '5%';
+                btn.style.border = '1px solid #888';
+                btn.style.borderRadius = '80%';
+                btn.style.top = '45%';
+                slider.appendChild(btn);
+            });
+        };
+        
+        setBtn(next, prev);
+        slider.style.position = 'relative';
+        // Configura as imagens
+        var img = Array.prototype.slice.call(slider.querySelectorAll('img'));
+        img.forEach(function(img, i){
+            img.style.position = 'absolute';
+            img.style.width = slider.style.width;
+            img.style.height = slider.style.height;
+            if (i > 0){
+                img.style.opacity = '0';
+            }
+        });
+        var count = 0;
+        // as funções seguintes chamam o setInterval e configura o prev e next
+        var fadeNext = function (time){
+            var returnNext = function(i){
+                if (i >= img.length - 1){
+                    return 0;
+                }
+                else{
+                    return i+1;
+                }
+            };
+            var aux = returnNext(count);
+            img[count].style.transition = 'opacity '+time+'s';
+            img[count].style.opacity = '0';
+            img[aux].style.transition = 'opacity '+time+'s';
+            img[aux].style.opacity = '1';
+            count = returnNext(count);
+        };
+        var fadePrev = function (time){
+            var returnPrev = function(i){
+                if (i == 0){
+                    //console.log('img.length - 1: '+i)
+                    return img.length - 1;
+                }
+                else{
+                    return i - 1;
+                }
+            };
+            var aux = returnPrev(count);
+            img[count].style.transition = 'opacity '+time+'s';
+            img[count].style.opacity = '0';
+            img[aux].style.transition = 'opacity '+time+'s';
+            img[aux].style.opacity = '1';
+            count = returnPrev(count);
+        };
+        var fade = setInterval(function(){
+            fadeNext(3);
+        }, 4000);
+        
+
+        var manually = function(fun){
+            console.log('oi');
+            clearInterval(fade);
+            fade = setInterval(function(){
+                fadeNext(3);
+            }, 3000);
+        };
+        next.addEventListener('click', function(){
+            manually(fadeNext(2));
+        });
+        prev.addEventListener('click', function(){
+            manually(fadePrev(2));
+        });
+    });
+    
+}
+
+// O main só chama as funções se as classes forem adicionadas
+function main(){
+    if(document.getElementsByClassName('simple-slider')){
+        marginSlider();
+    }
+    if(document.getElementsByClassName('fadeIn')){
+        fadeIn();
+    }
+}
+
+window.onload = main;
