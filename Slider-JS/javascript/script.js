@@ -58,12 +58,29 @@ function marginSlider(){
         // Controla os elementos
         var imgCount = 0;
 
-        // É aqui que o slider inicia
-        var startSlider = function(run){
+        var startSlider = function(){
+            if(parseFloat(img[imgCount].style.marginLeft) == - (simpleSlider.offsetWidth)){
+                slider.appendChild(img[imgCount]);
+                setImage(img[imgCount]);
+                if(imgCount == img.length - 1){
+                    imgCount = 0;
+                }
+                else{
+                    imgCount++;
+                }
+            }
+            img[imgCount].style.marginLeft = (parseFloat(img[imgCount].style.marginLeft) - (simpleSlider.offsetWidth / 500)) + 'px';
+        };
+        var start;
 
-            //Se o slider for pausado no meio de uma transição de elementos, o slider mostra apenas um deles
-            play.addEventListener('click', function(){
-                run = false;
+        //configura o botão play e stop
+        play.addEventListener('click', function(){
+            if(play.innerHTML == 'PLAY'){
+                play.innerHTML = 'STOP';
+                start = setInterval(startSlider, 1);
+            }
+            else{
+                play.innerHTML = 'PLAY';
                 if(parseFloat(img[imgCount].style.marginLeft) != - (simpleSlider.offsetWidth) && parseFloat(img[imgCount].style.marginLeft) != 0){
                     if( - parseFloat(img[imgCount].style.marginLeft) < simpleSlider.offsetWidth / 1.5){
                         img[imgCount].style.marginLeft = '0';
@@ -80,38 +97,7 @@ function marginSlider(){
                         }
                     }
                 }
-            });
-
-            // É aqui onde rola o slider
-            var interval = setInterval(function(){
-                if(run === true){
-                    if(parseFloat(img[imgCount].style.marginLeft) == - (simpleSlider.offsetWidth)){
-                        slider.appendChild(img[imgCount]);
-                        setImage(img[imgCount]);
-                        if(imgCount == img.length - 1){
-                            imgCount = 0;
-                        }
-                        else{
-                            imgCount++;
-                        }
-                    }
-                    img[imgCount].style.marginLeft = (parseFloat(img[imgCount].style.marginLeft) - (simpleSlider.offsetWidth / 500)) + 'px';
-                }
-                else{
-                    clearInterval(interval);
-                }
-
-            }, 1);
-        };
-
-        //configura o botão play
-        play.addEventListener('click', function(){
-            if(play.innerHTML == 'PLAY'){
-                startSlider(true);
-                play.innerHTML = 'STOP';
-            }
-            else{
-                play.innerHTML = 'PLAY';
+                clearInterval(start);
             }
         });
     });
