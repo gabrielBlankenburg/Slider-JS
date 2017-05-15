@@ -103,7 +103,9 @@ function marginSlider(){
     });
 }
 
-/* Aqui o slider vai fazer um simples fadeIn infinitamente, possuindo os botões de next e prev pra voltar ou avançar a imagem*/
+// Aqui o slider vai fazer um simples fadeIn infinitamente, possuindo os botões de next e prev pra voltar ou avançar a imagem para chama-lo basta
+// criar uma div com o nome 'fadeIn'
+
 function fadeIn(){
     var slider = Array.prototype.slice.call(document.getElementsByClassName('fadeIn'));
     slider.forEach(function(slider){
@@ -199,6 +201,81 @@ function fadeIn(){
     
 }
 
+// Esse é o slider mais simples, parecido com o FadeIn, porém totalmente manual e sem o efeito fadeIn para chama-lo basta colocar uma div com a class
+// 'simple-slider'
+
+function simpleSlider (){
+    var slider = Array.prototype.slice.call(document.getElementsByClassName('simple-slider'));
+    slider.forEach(function(slider){
+        slider.style.position = 'relative';
+        var img = Array.prototype.slice.call(slider.querySelectorAll('img'));
+        img.forEach(function(img, i){
+            img.style.position = 'absolute';
+            img.style.width = slider.offsetWidth + 'px';
+            img.style.height = slider.offsetHeight + 'px';
+            img.style.visibility = 'hidden';
+        });
+        img[0].style.visibility = 'visible';
+        var next = document.createElement('button');
+        var prev = document.createElement('button');
+        
+        var setBtn = function(next, prev){
+            var both = [next,prev];
+            next.innerHTML = '>';
+            prev.innerHTML = '<';
+            next.style.right = '3%';
+            prev.style.left = '3%';
+            both.forEach(function(btn){
+                btn.style.position = 'absolute';
+                btn.style.background = '#333';
+                btn.style.opacity = '.5';
+                btn.style.color = 'white';
+                btn.style.width = '5%';
+                btn.style.height = '5%';
+                btn.style.border = '1px solid #888';
+                btn.style.borderRadius = '80%';
+                btn.style.top = '45%';
+                slider.appendChild(btn);
+            });
+        };
+        
+        setBtn(prev, next);
+        
+        var imgCount = 0;
+        
+        var verifyNext = function(){
+            if(imgCount == img.length - 1)
+                return 0;
+            else
+                return imgCount + 1;
+        };
+        
+        var verifyPrev = function(){
+            if(imgCount == 0)
+                return img.length - 1;
+            else
+                return imgCount - 1;
+        };
+        
+        var sliderNext = function(){
+            img[imgCount].style.visibility = 'hidden';
+            img[verifyNext()].style.visibility = 'visible';
+            imgCount = verifyNext();
+        }; 
+        
+        var sliderPrev = function(){
+            img[imgCount].style.visibility = 'hidden';
+            img[verifyPrev()].style.visibility = 'visible';
+            imgCount = verifyPrev();
+        };
+        
+        next.addEventListener('click', sliderNext);
+        prev.addEventListener('click', sliderPrev);
+        
+        
+    });
+}
+
 // O main só chama as funções se as classes forem adicionadas
 function main(){
     if(document.getElementsByClassName('margin-slider')){
@@ -206,6 +283,9 @@ function main(){
     }
     if(document.getElementsByClassName('fadeIn')){
         fadeIn();
+    }
+    if(document.getElementsByClassName('simple-slider')){
+        simpleSlider();
     }
 }
 
