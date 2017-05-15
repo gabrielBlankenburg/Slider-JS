@@ -4,21 +4,21 @@
  IMPORTANTE: adicione um tamanho para a classe
   */
 function marginSlider(){
-    var simpleSlider = Array.prototype.slice.call(document.getElementsByClassName('simple-slider'));
-    simpleSlider.forEach(function(simpleSlider){
-        var img = Array.prototype.slice.call(simpleSlider.children);
+    var marginSlider = Array.prototype.slice.call(document.getElementsByClassName('simple-slider'));
+    marginSlider.forEach(function(marginSlider){
+        var img = Array.prototype.slice.call(marginSlider.children);
         var slider = document.createElement('div');
         slider.className = 'slider';
         // Deixa a div no tamanho certo para todos os elementos
-        slider.style.width = (simpleSlider.offsetWidth * img.length) + 'px';
-        slider.style.height = simpleSlider.offsetHeight + 'px';
-        simpleSlider.style.width = simpleSlider.offsetWidth + 'px';
-        simpleSlider.style.height = simpleSlider.offsetHeight + 'px';
+        slider.style.width = (marginSlider.offsetWidth * img.length) + 'px';
+        slider.style.height = marginSlider.offsetHeight + 'px';
+        marginSlider.style.width = marginSlider.offsetWidth + 'px';
+        marginSlider.style.height = marginSlider.offsetHeight + 'px';
         //impede os elementos que não devem aparecer de aparecerem
         slider.style.overflow = 'hidden';
-        simpleSlider.style.overflow = 'hidden';
+        marginSlider.style.overflow = 'hidden';
         slider.style.overflow = 'hidden';
-        simpleSlider.style.position = 'relative';
+        marginSlider.style.position = 'relative';
 
         // O botão play
         var play = document.createElement('button');
@@ -26,7 +26,7 @@ function marginSlider(){
         play.style.bottom = '3%';
         play.style.background = '#111';
         play.style.left = '45%';
-        play.style.width = simpleSlider.offsetWidth / 10;
+        play.style.width = marginSlider.offsetWidth / 10;
         play.style.fontFamily = 'Impact, Charcoal, sans-serif';
         play.innerHTML = 'PLAY';
         play.style.position = 'absolute';
@@ -34,15 +34,15 @@ function marginSlider(){
         play.style.border = '1px solid rgba(20,20,20,.5)';
         play.style.color = 'white';  
         play.style.opacity = '0.5';
-        simpleSlider.appendChild(play);
+        marginSlider.appendChild(play);
         
         
         // Configura os elementos e adiciona no slider
         var setImage = function(img){
             img.style.position = 'relative';
             img.style.top = '0';
-            img.style.width = simpleSlider.offsetWidth + 'px';
-            img.style.height = simpleSlider.offsetHeight + 'px';
+            img.style.width = marginSlider.offsetWidth + 'px';
+            img.style.height = marginSlider.offsetHeight + 'px';
             img.style.float = 'left';
             img.style.margin = '0';
             img.style.border = 'none';
@@ -51,15 +51,15 @@ function marginSlider(){
         img.forEach(function(img){
             setImage(img);
         });
-        // Adiciona a div criada em simpleSlider
-        simpleSlider.appendChild(slider);
-        document.body.appendChild(simpleSlider);
+        // Adiciona a div criada em marginSlider
+        marginSlider.appendChild(slider);
+        document.body.appendChild(marginSlider);
 
         // Controla os elementos
         var imgCount = 0;
 
         var startSlider = function(){
-            if(parseFloat(img[imgCount].style.marginLeft) == - (simpleSlider.offsetWidth)){
+            if(parseFloat(img[imgCount].style.marginLeft) == - (marginSlider.offsetWidth)){
                 slider.appendChild(img[imgCount]);
                 setImage(img[imgCount]);
                 if(imgCount == img.length - 1){
@@ -69,7 +69,7 @@ function marginSlider(){
                     imgCount++;
                 }
             }
-            img[imgCount].style.marginLeft = (parseFloat(img[imgCount].style.marginLeft) - (simpleSlider.offsetWidth / 500)) + 'px';
+            img[imgCount].style.marginLeft = (parseFloat(img[imgCount].style.marginLeft) - (marginSlider.offsetWidth / 500)) + 'px';
         };
         var start;
 
@@ -81,12 +81,12 @@ function marginSlider(){
             }
             else{
                 play.innerHTML = 'PLAY';
-                if(parseFloat(img[imgCount].style.marginLeft) != - (simpleSlider.offsetWidth) && parseFloat(img[imgCount].style.marginLeft) != 0){
-                    if( - parseFloat(img[imgCount].style.marginLeft) < simpleSlider.offsetWidth / 1.5){
+                if(parseFloat(img[imgCount].style.marginLeft) != - (marginSlider.offsetWidth) && parseFloat(img[imgCount].style.marginLeft) != 0){
+                    if( - parseFloat(img[imgCount].style.marginLeft) < marginSlider.offsetWidth / 1.5){
                         img[imgCount].style.marginLeft = '0';
                     }
                     else{
-                        img[imgCount].style.marginLeft = - simpleSlider.offsetWidth;
+                        img[imgCount].style.marginLeft = - marginSlider.offsetWidth;
                         slider.appendChild(img[imgCount]);
                         setImage(img[imgCount]);
                         if(imgCount == img.length - 1){
