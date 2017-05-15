@@ -1,7 +1,7 @@
 /* Cria um slider que ao apertar play empurra as imagens usando margem, as imagens são posicionadas dentro de uma div (criada pela função), as imagens
  ficam lado a lado, porém a div só mostra o equivalente ao tamanho de uma foto. Quando uma foto some completamente do slider, ela é adicionada
  ao final do slider novamente, e é assim infinitamente para usar esse slider basta criar uma div com a classe 'margin-slider' e adicionar as imagens dentro
- IMPORTANTE: adicione um tamanho para a classe
+ IMPORTANTE: adicione um tamanho para a classe de QUALQUER slider
   */
 function marginSlider(){
     var simpleSlider = Array.prototype.slice.call(document.getElementsByClassName('margin-slider'));
