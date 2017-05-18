@@ -1,7 +1,6 @@
 /* Cria um slider que ao apertar play empurra as imagens usando margem, as imagens são posicionadas dentro de uma div (criada pela função), as imagens
  ficam lado a lado, porém a div só mostra o equivalente ao tamanho de uma foto. Quando uma foto some completamente do slider, ela é adicionada
- ao final do slider novamente, e é assim infinitamente para usar esse slider basta criar uma div com a classe 'margin-slider' e adicionar as imagens dentro
- IMPORTANTE: adicione um tamanho para a classe de QUALQUER slider
+ ao final do slider novamente, e é assim infinitamente, até que o usuário escolha parar.
   */
 function marginSlider(){
     var simpleSlider = Array.prototype.slice.call(document.getElementsByClassName('margin-slider'));
@@ -102,8 +101,7 @@ function marginSlider(){
     });
 }
 
-// Aqui o slider vai fazer um simples fadeIn infinitamente, possuindo os botões de next e prev pra voltar ou avançar a imagem para chama-lo basta
-// criar uma div com o nome 'fadeIn'
+// Aqui o slider vai fazer um simples fadeIn infinitamente, possuindo os botões de next e prev pra voltar ou avançar a imagem.
 
 function fadeIn(){
     var slider = Array.prototype.slice.call(document.getElementsByClassName('fadeIn'));
@@ -200,8 +198,7 @@ function fadeIn(){
     
 }
 
-// Esse é o slider mais simples, parecido com o FadeIn, porém totalmente manual e sem o efeito fadeIn para chama-lo basta colocar uma div com a class
-// 'simple-slider'
+// Esse é o slider mais simples, parecido com o FadeIn, porém totalmente manual e sem o efeito fadeIn
 
 function simpleSlider (){
     var slider = Array.prototype.slice.call(document.getElementsByClassName('simple-slider'));
