@@ -53,7 +53,6 @@ function marginSlider(){
         });
         // Adiciona a div criada em simpleSlider
         simpleSlider.appendChild(slider);
-        document.body.appendChild(simpleSlider);
 
         // Controla os elementos
         var imgCount = 0;
