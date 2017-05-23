@@ -182,7 +182,6 @@ function fadeIn(){
         
 
         var manually = function(fun){
-            console.log('oi');
             clearInterval(fade);
             fade = setInterval(function(){
                 fadeNext(3);
