@@ -1,0 +1,80 @@
+body{
+    text-align: center;
+}
+
+#random{
+    margin-left: 1%;
+}
+
+#filter{
+    margin-right: 1%;
+    margin-left: 1%;
+}
+#random, #filter{
+    border: 1px rgba(30,30,30,.6) solid;
+    padding: 3%;
+    width: 40%;
+    float: left;
+    background-color: #f5f5f5;
+    border-radius: 3%;
+    cursor: pointer;
+}
+
+#random:hover, #filter:hover{
+    background-color: #ddd;
+}
+
+#opt{
+    width: 70%;
+    margin: auto;
+}
+
+#form{
+    clear: both;
+    margin: auto;
+    margin-top: 10vh;
+    width: 70%;
+    text-align: left;
+}
+
+#form input{
+    padding: 10px;
+}
+
+#sliderChoice{
+    margin-bottom: 2vh;
+}
+
+.category{
+    margin-top: 2vh;
+    display: none;
+}
+
+#sliders{
+    width: 500px;
+    height: 500px;
+    margin: auto;
+}
+
+.ref{
+    font-size: 12px;
+}
+
+#submit{
+    margin-top: 2vh;
+}
+
+img {
+    display: block;
+}
+
+button {
+    background: #333;
+    width: 120px;
+    height: 30px;
+    border: none;
+}
+
+h1 {
+    font-size: 33px;
+}

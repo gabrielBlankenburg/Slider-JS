@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testando o Slider</title>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/slider.js"></script>
+    <script type="text/javascript" src="js/ignore.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+<body>
+    <h1>Sliders com JavasScript</h1>
+    <div id="opt">
+        <div id="filter">Preencher com imagens de uma dada categoria</div>
+        <div id="random">Preencher com imagens completamente aleatórias</div>
+    </div>
+    <div id="form">
+        <span class="category">Insira a categoria: </span>
+
+        <input type="text" class="category"> 
+        <br>
+        Escolha o slider que deseja usar: 
+        <select id="sliderChoice">
+            <option value="simple-slider">Simple Slider</option>
+            <option value="fadeIn">Fade In</option>
+            <option value="margin-slider">Margin Slider</option>
+        </select>
+        <br>
+        Número de imagens: 
+        <select id="nImg">
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br>
+        <span class="ref">Todas as imagens pertencem ao site <a href='https://pixabay.com' target="_blank">Pixabay</a></span>
+        <br>
+        <button id="submit" style="margin: 0, auto;">Criar Slider</button>
+    </div>
+    <div id="sliders"></div>
+    
+</body>
+</html>
